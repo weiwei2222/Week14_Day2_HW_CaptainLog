@@ -10,22 +10,25 @@ class Index extends React.Component {
         <nav>
           <a href="/new">Create a New Log</a>
         </nav>
+        <form action="/search" method="post">
+          Search by title:
+          <input type="text" name="title" />
+          <button type="submit">submit</button>
+        </form>
         <ul>
-          {logs.map((log, i) => {
+          {logs.map((logs, i) => {
             return (
-              <li>
-                The <a href={`/logs/${logs._id}`}>{logs.title}</a>
+              <li key={i}>
+                Title:<a href={`/log/${logs._id}`}>{logs.title}</a>
                 <br />
-                {logs.entry} <br />
+                Entry:{logs.entry}
+                <br />
                 {logs.shipIsBroken
                   ? `The ship is broken`
                   : `The ship is NOT broken`}
                 <br />
-                <a href={`/logs/${log._id}/edit`}> Edit This Log </a>
-                <form
-                  action={`/logs/${fruit._id}?_method=DELETE`}
-                  method="POST"
-                >
+                <a href={`/log/${logs._id}/edit`}> Edit This Log </a>
+                <form action={`/log/${logs._id}?_method=DELETE`} method="POST">
                   <input type="submit" value="DELETE" />
                 </form>
               </li>
