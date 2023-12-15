@@ -1,27 +1,22 @@
 require("dotenv").config();
 const express = require("express");
+const methodOverride = require("method-override");
 const logRoutes = require("./router/log");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
 // ------mongoose connect with data-----
-const mongoose = require("mongoose");
-const mongoURI = process.env.MONGO_URI;
-const db = mongoose.connection;
-mongoose.connect(mongoURI);
-mongoose.connection.once("open", () => {
-  console.log("connected to mongo");
-});
+require("./config/database");
 
-// -------middleware---------
-const methodOverride = require("method-override");
+// ---------view engine --------
 const jsxViewEngine = require("jsx-view-engine");
 
 app.set("view engine", "jsx");
 app.set("views", "./views");
 app.engine("jsx", jsxViewEngine());
 
+// -------middleware---------
 app.use((req, res, next) => {
   console.log("Middleware is running");
   next();
