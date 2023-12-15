@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const logRoutes = require("./router/log");
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -31,6 +32,6 @@ app.use(methodOverride("_method"));
 // --------use routes --------------
 app.use(logRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("My server is set up and running");
 });
