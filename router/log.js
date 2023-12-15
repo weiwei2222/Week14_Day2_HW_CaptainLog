@@ -10,7 +10,7 @@ const {
   deleteLog,
   editLog,
   updateLog,
-} = require("./../controllers/userController");
+} = require("../controllers/logController");
 
 // GET - index page
 router.get("/", getAllLogs);
